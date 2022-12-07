@@ -12,9 +12,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        brightness: Brightness.light,
+        primaryColor: Colors.green,
+        appBarTheme: AppBarTheme(
+          elevation: 10,
+          titleTextStyle: TextTheme(
+            headline6: TextStyle(
+              fontFamily: 'LeckerliOne',
+              fontSize: 24,
+            ),
+          ).headline6,
+        ),
+      ),
       home: ECommerceScreen(),
     );
   }
 }
-
-
