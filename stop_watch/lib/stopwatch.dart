@@ -3,6 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:stop_watch/platform_alert.dart';
 
 class StopWatch extends StatefulWidget {
+
+  static const route = '/stopwatch';
+
+  final String? name;
+  final String? email;
+
+  const StopWatch({Key? key, this.name, this.email}) : super(key: key);
+
   @override
   State createState() => StopWatchState();
 }
@@ -21,9 +29,12 @@ class StopWatchState extends State<StopWatch> {
 
   @override
   Widget build(BuildContext context) {
+
+    String name = (ModalRoute.of(context)?.settings.arguments ?? '') as String;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Stopwatch'),
+        title: Text(name),
       ),
       body: Column(
         children: <Widget>[

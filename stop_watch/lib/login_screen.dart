@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:stop_watch/stopwatch.dart';
 
 class LoginScreen extends StatefulWidget {
+
+  static const route = '/login';
+
   const LoginScreen({Key? key}) : super(key: key);
 
   @override
@@ -9,7 +13,6 @@ class LoginScreen extends StatefulWidget {
 
 class _LoginScreenState extends State<LoginScreen> {
 
-  bool loggedIn = false;
   String name = "";
 
   final _nameController = TextEditingController();
@@ -23,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
         title: Text('Login'),
       ),
       body: Center(
-        child: loggedIn ? _buildSuccess() : _buildLoginForm(),
+        child: _buildLoginForm(),
       ),
     );
   }
@@ -79,19 +82,13 @@ class _LoginScreenState extends State<LoginScreen> {
       return;
     }
 
-    setState(() {
-      loggedIn = true;
-      name = _nameController.text;
-    });
+    final name = _nameController.text;
+
+    Navigator.of(context).pushReplacementNamed(
+      StopWatch.route,
+      arguments: name,
+    );
+
   }
 
-  Widget _buildSuccess() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
-        Icon(Icons.check, color: Colors.orangeAccent),
-        Text('Hi $name')
-      ],
-    );
-  }
 }
